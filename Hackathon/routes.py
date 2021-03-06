@@ -17,6 +17,7 @@ def logout():
 	return redirect(url_for('login'))
 
 @app.route("/booking", methods=['GET', 'POST'])
+@login_required
 def booking():
 	form = SelectSlotForm()
 	if form.validate_on_submit():
@@ -32,6 +33,7 @@ def booking():
 	return render_template('booking.html', parkinglotA=parkinglotA, parkinglotB=parkinglotB, parkinglotC=parkinglotC, parkinglotD=parkinglotD, parkinglotE=parkinglotE, form=form)
 
 @app.route("/addslot", methods=['GET', 'POST'])
+@login_required
 def addslot():
 	form = AddSlotForm()
 	if form.validate_on_submit():

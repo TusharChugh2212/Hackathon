@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, abort
 from Hackathon import app, bcrypt, db, mail
-from Hackathon.forms import RegisterationForm, LoginForm, RequestResetForm, ResetPasswordForm
+from Hackathon.forms import RegisterationForm, LoginForm, RequestResetForm, ResetPasswordForm, AddSlotForm
 from Hackathon.models import User, ParkingLot
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -17,7 +17,19 @@ def logout():
 
 @app.route("/booking")
 def booking():
-	return render_template('booking.html')
+	parkinglot = ParkingLot.query.filter_by(slot_no=2).first()
+	return render_template('booking.html', parkinglot=parkinglot)
+
+@app.route("/addslot", methods=['GET', 'POST'])
+def addslot():
+	form = AddSlotForm()
+	if form.validate_on_submit():
+		print("hello")
+		parkinglot = ParkingLot(level=form.level.data, slot_no=form.slot_no.data, parked=form.parked.data, company=form.company.data)
+		db.session.add(parkinglot)
+		db.session.commit()
+		return redirect(url_for('booking'))
+	return render_template('addslot.html', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():

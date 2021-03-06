@@ -133,9 +133,9 @@
                 <table id="seatsBlock">
                   <p id="notification"></p>
                   <tr>
-                    <!-- <td colspan="18">
-                      <div class="screen">Entry</div>
-                    </td> -->
+                    <td colspan="18">
+                      <!-- <div class="screen">Entry</div> -->
+                    </td>
                     <!-- <td colspan="13">
                       <div class="screen">Exit</div>
                     </td> -->
@@ -155,7 +155,7 @@
                     <td>3</td>
                     <td>4</td>
                     <td>5</td>
-                    <td></td>
+                    <!-- <td></td> -->
                     <td>6</td>
                     <td>7</td>
                     <td>8</td>
@@ -167,12 +167,16 @@
 
                   <tr>
                     <td>A</td>
-                    <td><input class="m-3 "type="checkbox" class="seats" value="A1"></td>
+                    {% if parkinglot.parked == 1 %}
+                      <td><input class="m-3 "type="checkbox" class="seats" value="A1" checked=""></td>
+                    {% else %}
+                      <td><input class="m-3 "type="checkbox" class="seats" value="A1"></td>
+                    {% endif %}
                     <td><input class="m-3" type="checkbox" class="seats" value="A2"></td>
                     <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
                     <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
                     <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-                    <td class="seatGap"></td>
+                    <!-- <td class="seatGap"></td> -->
                     <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
                     <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
                     <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
@@ -195,7 +199,7 @@
           <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <td class="seatGap"></td>
+          <!-- <td class="seatGap"></td> -->
           <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
@@ -212,7 +216,7 @@
           <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <td class="seatGap"></td>
+          <!-- <td class="seatGap"></td> -->
           <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
@@ -229,7 +233,7 @@
           <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <td class="seatGap"></td>
+          <!-- <td class="seatGap"></td> -->
           <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
@@ -246,7 +250,7 @@
           <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <td class="seatGap"></td>
+          <!-- <td class="seatGap"></td> -->
           <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
           <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>

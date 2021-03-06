@@ -17,6 +17,18 @@ class RegisterationForm(FlaskForm):
 		if user:
 			raise ValidationError('Sorry this email is taken, Please choose another one')
 
+class AddSlotForm(FlaskForm):
+	level = StringField('Level', validators=[DataRequired()])
+	slot_no = StringField('Slot No.', validators=[DataRequired()])
+	parked = BooleanField('Parked')
+	company = StringField('Company Name', validators=[DataRequired()])
+	submit = SubmitField('Add Slot')
+
+	def validate_email(self, slot_no):
+		user = ParkingLot.query.filter_by(slot_no=slot_no.data).first()
+		if user:
+			raise ValidationError('Sorry this slot_no is taken, Please choose another one')
+
 class LoginForm(FlaskForm):
 	email = StringField('Email', validators=[DataRequired(), Email()])
 	password = PasswordField('Password', validators=[DataRequired()])

@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
 		return f"User('{self.username}', '{self.email}')"
 
 class ParkingLot(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True)
 	level = db.Column(db.Integer, nullable=False)
 	slot_no = db.Column(db.Integer, nullable=False)
 	parked = db.Column(db.Boolean, nullable=False)

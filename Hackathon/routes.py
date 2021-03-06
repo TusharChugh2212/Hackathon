@@ -1,6 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request, abort
 from Hackathon import app, bcrypt, db, mail
 from Hackathon.forms import RegisterationForm, LoginForm, RequestResetForm, ResetPasswordForm, AddSlotForm
+from wtforms.validators import ValidationError
 from Hackathon.models import User, ParkingLot
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -41,8 +42,6 @@ def login():
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
 			login_user(user)
 			return redirect(url_for('booking'))
-		else:
-			flash('Login Unsuccessful, Please check your email and password', 'danger')
 	return render_template('login.html', form=form)
 
 @app.route("/signup", methods=['GET', 'POST'])

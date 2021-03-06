@@ -26,14 +26,24 @@
 					Sign In
 				</span>
 
-						
+
 				<div class="wrap-input100 m-b-20">
 					{{ form.email(class="input100", placeholder=form.email.label.text) }}
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 m-b-25">
-					{{ form.password(class="input100", placeholder=form.password.label.text) }}
+					{% if form.password.errors %}
+						{{ form.password(class="input100")}}
+							{% for error in form.password.errors %}
+								<script type="text/javascript">
+									window.alert( {{ error|tojson }} );
+								</script>
+							{% endfor %}
+					{% else %}
+						{{ form.password(class="input100", placeholder=form.password.label.text) }}
+					{% endif %}
+
 					<span class="focus-input100"></span>
 				</div>
 

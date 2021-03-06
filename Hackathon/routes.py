@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, abort
 from Hackathon import app, bcrypt, db, mail
-from Hackathon.forms import RegisterationForm, LoginForm, RequestResetForm, ResetPasswordForm, AddSlotForm
+from Hackathon.forms import RegisterationForm, LoginForm, RequestResetForm, ResetPasswordForm, AddSlotForm, SelectSlotForm
 from wtforms.validators import ValidationError
 from Hackathon.models import User, ParkingLot
 from flask_login import login_user, current_user, logout_user, login_required
@@ -16,20 +16,29 @@ def logout():
 	logout_user()
 	return redirect(url_for('login'))
 
-@app.route("/booking")
+@app.route("/booking", methods=['GET', 'POST'])
 def booking():
-	parkinglot = ParkingLot.query.filter_by(slot_no=1).first()
-	return render_template('booking.html', parkinglot=parkinglot)
+	form = SelectSlotForm()
+	if form.validate_on_submit():
+		parkinglot = ParkingLot.query.filter_by(parked=0).order_by(ParkingLot.level).order_by(ParkingLot.slot_no).first()
+		print("Parking Level: ", parkinglot.level)
+		print("Slot Number  : ", parkinglot.slot_no)
+		# return render_template('booking.html', parkinglot=parkinglot)
+	parkinglotA = ParkingLot.query.filter_by(level=1).all()
+	parkinglotB = ParkingLot.query.filter_by(level=2).all()
+	parkinglotC = ParkingLot.query.filter_by(level=3).all()
+	parkinglotD = ParkingLot.query.filter_by(level=4).all()
+	parkinglotE = ParkingLot.query.filter_by(level=5).all()
+	return render_template('booking.html', parkinglotA=parkinglotA, parkinglotB=parkinglotB, parkinglotC=parkinglotC, parkinglotD=parkinglotD, parkinglotE=parkinglotE, form=form)
 
 @app.route("/addslot", methods=['GET', 'POST'])
 def addslot():
 	form = AddSlotForm()
 	if form.validate_on_submit():
-		print("hello")
 		parkinglot = ParkingLot(level=form.level.data, slot_no=form.slot_no.data, parked=form.parked.data, company=form.company.data)
 		db.session.add(parkinglot)
 		db.session.commit()
-		return redirect(url_for('booking'))
+		return redirect(url_for('addslot'))
 	return render_template('addslot.html', form=form)
 
 @app.route("/login", methods=['GET', 'POST'])

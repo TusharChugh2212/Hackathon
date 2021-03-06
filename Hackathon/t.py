@@ -11,15 +11,18 @@ ser = serial.Serial(serial_port, baud_rate, timeout=1)
 while True:
     line = ser.readline().decode()
     line = str(line.strip())
-    print(line)
-    if (line == '1' or line == '0'):
-        flag = 0
-        print("hi")
-    line = bool(line)
-    if(change != line and flag != 1):
-        cur.execute('UPDATE parking_lot SET parked=? WHERE slot_no=?', [change, 1])
-        cur.execute("SELECT * FROM parking_lot")
-        flag = 1
+    slot = line.split(" ")
+    if (slot[0] == ''):
+        continue
+    if (slot[1] == '1' or slot[1] == '0'):
+        flag = flag - 1
+    print(slot[1])
+    slot[1] = bool(int(slot[1]))
+    print(slot[1])
+    if(change != int(slot[1]) and flag != 3):
+        cur.execute('UPDATE parking_lot SET parked=? WHERE slot_no=?', [int(slot[1]), slot[0]])
+        cur.execute("SELECT * FROM parking_lot WHERE parked=?", [int(slot[1])])
+        flag = flag + 1
         print(cur.fetchone())
         conn.commit()
         change = not change

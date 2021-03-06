@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <!-- Responsive Stylesheet -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util_login.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main_login.css') }}">
 </head>
 
 <body>
@@ -129,7 +131,6 @@
           <div class="" data-aos="fade-right" data-aos-delay="400" data-aos-duration="800" style="margin:auto;">
             <div class="seatStructure">
               <center>
-
                 <table id="seatsBlock">
                   <p id="notification"></p>
                   <tr>
@@ -140,12 +141,10 @@
                       <div class="screen">Exit</div>
                     </td> -->
                     <td rowspan="20">
-                      <div class="smallBox greenBox m-4">Selected Seat</div> <br />
+                      <div class="smallBox greenBox m-4">Occupied Slot</div> <br />
                       <!-- <div class="smallBox redBox m-4">Reserved Seat</div><br /> -->
-                      <div class="smallBox emptyBox m-4">Empty Seat</div><br />
+                      <div class="smallBox emptyBox m-4">Vacant Slot</div><br />
                     </td>
-
-                    <br />
                   </tr>
 
                   <tr>
@@ -167,97 +166,61 @@
 
                   <tr>
                     <td>A</td>
-                    {% if parkinglot.parked == 1 %}
-                      <td><input class="m-3 "type="checkbox" class="seats" value="A1" checked=""></td>
-                    {% else %}
-                      <td><input class="m-3 "type="checkbox" class="seats" value="A1"></td>
-                    {% endif %}
-                    <td><input class="m-3" type="checkbox" class="seats" value="A2"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-                    <!-- <td class="seatGap"></td> -->
-                    <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A9"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A10"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A11"></td>
-                    <td><input class="m-3" type="checkbox" class="seats" value="A12"></td>
+                      {% for park in parkinglotA %}
+                        {% if park.parked == 1 %}
+                          <td><input class="m-3 "type="checkbox" class="seats" checked=""></td>
+                        {% else %}
+                          <td><input class="m-3 "type="checkbox" class="seats"></td>
+                        {% endif %}
+                      {% endfor %}
                   </tr>
 
 
 				<div class="text-center p-t-57 p-b-20">
-					<!-- <span class="txt1">
-						Or Sign Up with
-					</span> -->
+					
 				</div>
         <tr>
           <td>B</td>
-          <td><input class="m-3" type="checkbox" class="seats" style="" value="A1"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A2"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <!-- <td class="seatGap"></td> -->
-          <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A9"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A10"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A11"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A12"></td>
+          {% for park in parkinglotB %}
+            {% if park.parked == 1 %}
+              <td><input class="m-3 "type="checkbox" class="seats" checked=""></td>
+            {% else %}
+              <td><input class="m-3 "type="checkbox" class="seats"></td>
+            {% endif %}
+          {% endfor %}>
         </tr>
 
         <tr>
           <td>C</td>
-          <td><input class="m-3" type="checkbox" class="seats" style="" value="A1"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A2"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <!-- <td class="seatGap"></td> -->
-          <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A9"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A10"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A11"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A12"></td>
+          {% for park in parkinglotC %}
+            {% if park.parked == 1 %}
+              <td><input class="m-3 "type="checkbox" class="seats" checked=""></td>
+            {% else %}
+              <td><input class="m-3 "type="checkbox" class="seats"></td>
+            {% endif %}
+          {% endfor %}>
         </tr>
 
         <tr>
           <td>D</td>
-          <td><input class="m-3" type="checkbox" class="seats" style="" value="A1"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A2"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <!-- <td class="seatGap"></td> -->
-          <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A9"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A10"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A11"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A12"></td>
+          {% for park in parkinglotD %}
+            {% if park.parked == 1 %}
+              <td><input class="m-3 "type="checkbox" class="seats" checked=""></td>
+            {% else %}
+              <td><input class="m-3 "type="checkbox" class="seats"></td>
+            {% endif %}
+          {% endfor %}>
         </tr>
 
         <tr>
           <td>E</td>
-          <td><input class="m-3" type="checkbox" class="seats" style="" value="A1"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A2"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A3"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A4"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A5"></td>
-          <!-- <td class="seatGap"></td> -->
-          <td><input class="m-3" type="checkbox" class="seats" value="A6"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A7"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A8"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A9"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A10"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A11"></td>
-          <td><input class="m-3" type="checkbox" class="seats" value="A12"></td>
+          {% for park in parkinglotE %}
+            {% if park.parked == 1 %}
+              <td><input class="m-3 "type="checkbox" class="seats" checked=""></td>
+            {% else %}
+              <td><input class="m-3 "type="checkbox" class="seats"></td>
+            {% endif %}
+          {% endfor %}>
         </tr>
 
                   <tr class="seatVGap"></tr>
@@ -365,12 +328,20 @@
 
     </div>
     </div>
-    </div> -->
+    </div> 
     </div>
     <!-- Widgets End -->
     <!-- Foot Note Start -->
     <!-- Foot Note End -->
   </footer>
+  <br>
+  <br>
+  <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <div class="container-login100-form-btn">
+          {{ form.submit(class="login100-form-btn") }}
+        </div>
+    </form>
   <section class="services" id="services">
     <div class="container">
       <div class="title text-center">

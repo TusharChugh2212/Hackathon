@@ -29,6 +29,9 @@ class AddSlotForm(FlaskForm):
 		if user:
 			raise ValidationError('Sorry this slot_no is taken, Please choose another one')
 
+class SelectSlotForm(FlaskForm):
+	submit = SubmitField('Find Slot')
+
 class LoginForm(FlaskForm):
 	email = StringField('Email', validators=[DataRequired(), Email()])
 	password = PasswordField('Password', validators=[DataRequired()])

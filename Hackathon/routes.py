@@ -17,7 +17,7 @@ def logout():
 
 @app.route("/booking")
 def booking():
-	parkinglot = ParkingLot.query.filter_by(slot_no=2).first()
+	parkinglot = ParkingLot.query.filter_by(slot_no=1).first()
 	return render_template('booking.html', parkinglot=parkinglot)
 
 @app.route("/addslot", methods=['GET', 'POST'])

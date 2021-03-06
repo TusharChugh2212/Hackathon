@@ -22,13 +22,13 @@ def booking():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
-		return render_template('index.html')
+		return redirect(url_for('booking'))
 	form = LoginForm()
 	if form.validate_on_submit():
 		user = User.query.filter_by(email=form.email.data).first()
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
 			login_user(user)
-			return render_template('index.html')
+			return redirect(url_for('booking'))
 		else:
 			flash('Login Unsuccessful, Please check your email and password', 'danger')
 	return render_template('login.html', form=form)
@@ -36,14 +36,13 @@ def login():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
 	if current_user.is_authenticated:
-		return render_template('index.html')
+		return redirect(url_for('home'))
 	form = RegisterationForm()
-	form2 = LoginForm()
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 		user = User(email=form.email.data, password=hashed_password, company=form.company.data)
 		db.session.add(user)
 		db.session.commit()
 		flash('Your Account Has Been Successfully Created. Now you can Log In', 'success')
-		return render_template('login.html', form=form2)
+		return redirect(url_for('login'))
 	return render_template('signup.html', form=form)

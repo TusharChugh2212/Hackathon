@@ -20,7 +20,7 @@ while True:
     slot[1] = bool(int(slot[1]))
     print(slot[1])
     if(change != int(slot[1]) and flag != 3):
-        cur.execute('UPDATE parking_lot SET parked=? WHERE slot_no=?', [int(slot[1]), slot[0]])
+        cur.execute('UPDATE parking_lot SET parked=? WHERE slot_no=? AND level=1', [int(slot[1]), slot[0]])
         cur.execute("SELECT * FROM parking_lot WHERE parked=?", [int(slot[1])])
         flag = flag + 1
         print(cur.fetchone())
